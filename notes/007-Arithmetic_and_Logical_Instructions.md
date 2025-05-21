@@ -78,26 +78,32 @@ In x86_64 assembly, **Arithmetic** and **logical** instructions allows you to pe
     ```
 6. Shift Right (`shr`)
    - Shifts the bits in the destination operand to the right by the specified number of positions.
-   - The new value woudl be `[initial vale] / 2^(number of positions)` rounded off
+   - The new value would be `[initial vale] / 2^(number of positions)` rounded off
    - Example:
     ```asm
         shr     rax, 2      ; rax >> 2
     ```
-7. Arithmetic Shift Right (`sar`)
+7. Arithmetic Shift Left (`sal`)
+   - Shifts the bits of the destination operand to the left, preserving the sign (used for signed numbers)
+   - Example:
+    ```asm
+        sal     rax, 1      ; signed left shift, preserving the sign bit
+    ```
+8. Arithmetic Shift Right (`sar`)
    - Shifts the bits of the destination operand to the right, preserving the sign (used for signed numbers)
    - Example:
     ```asm
         sar     rax, 1      ; signed right shift, preserving the sign bit
     ```
-8. Test (`test`)
+9. Test (`test`)
    - Performs a bitwise AND between source and destination operands, it only updates the flags (according to the result).
    - Doesn't modify the destination operand or source operand.
    - Example:
     ```asm
         test rax, rbx       ; tests the bits of rax and rbx, modifies flags based on the result
     ```
-9. Compare (`cmp`)
-   - Subtracts the source operand from the destination operand and upates the falgs accordingly (based on the result).
+10. Compare (`cmp`)
+   - Subtracts the source operand from the destination operand and upatdes the flags accordingly (based on the result).
    - Doesn't modify the destination operand or source operand.
    - Example:
     ```asm
