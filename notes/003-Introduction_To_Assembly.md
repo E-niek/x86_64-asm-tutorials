@@ -1,5 +1,5 @@
 # Introduction To Assembly (asm) Language
-Assembly language is a low level language that provides direct control over the hardware. It serves as an interface between high-level languages (like python or C) and machine code (the binary code that CPU understands)
+Assembly language is a low level language that provides direct control over the hardware. It serves as an interface between high-level languages (like python or C) and machine code (the binary code that CPU understands).
 
 ## 1. What Is Assembly Language?
 Assembly language consists of human-readable instructions that are mapped to machine code instructions. Each line in an assembly program corresponds to an instruction that the CPU can execute.
@@ -128,7 +128,7 @@ Immediate values are of four types:
     
         mov rax, 0c8h           ; hex
         mov rax, 0hc8           ; still hex
-        mov rax, $0c8           ; still hex: 0 is req
+        mov rax, $0c8           ; still hex: 0 is required
         mov rax, 0xc8           ; hex again
     
         mov rax, 310q           ; octal
@@ -140,7 +140,7 @@ Immediate values are of four types:
         mov rax, 0b11001000     ; binary again
         mov rax, 11001000y      ; binary yet again
         mov rax, 0y11001000     ; binary yet again
-        mov rax, 0b1100_1000    ; above examples can have undersores too
+        mov rax, 0b1100_1000    ; above examples can have underscores too
     ```
 - Character constant
     ```asm
@@ -152,7 +152,7 @@ Immediate values are of four types:
         db 'h', 'e', 'l', 'l', 'o'  ; equivalent character constants
         db 'hello', 0x0             ; defines a string literal ending with null char where each char takes one Byte
         dd 'hello'                  ; defines a doubel word string literal where eachc char takes 4 Bytes
-                                    ; We can also use " " to define strign constants, but using ' ' is a good and common practice.
+                                    ; We can also use " " to define string constants, but using ' ' is a good and common practice.
     ```
 - Floating point constant
     ```asm
@@ -196,7 +196,7 @@ AT&T syntax is often used in **Unix/Linux environments**, especailly with tools 
     ```asm
         movq    %rax, %rbx      ; move the value of rax into rbx (movq for move quadword)
         movq    $5, %rax        ; move the value 5 into rax (movq for move quadword)
-        movq    %rbx, (%rax)    ; move the value of rbx into the memory address pointed by rax
+        movq    %rbx, (%rax)    ; move the value of rbx into the memory address pointed to by rax
     ```
 
 ### Key Differences Between `Intel syntax` And `At&t syntax`
