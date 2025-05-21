@@ -10,8 +10,8 @@ In this tutorial we will learn how to print a signle digit onto the screen. Befo
 
     _start:                         ; start of the global _start label
         mov     rax, 5              ; loading the value 5 into rax
-        call    printRAXDigit      ; calling the function _printRAXDigit
-        jmp     exit               ; Jumping to _exit label
+        call    printRAXDigit      ; calling the function printRAXDigit
+        jmp     exit               ; Jumping to exit label
 
     printRAXDigit:
         add     rax, 48             ; incrementing the value of rax register by 48
@@ -42,13 +42,13 @@ In this section we are writing code to print whatever single digit RAX register 
 - `mov rax 5`
   - Loads the value 5 into RAX (we will print this 5 stored in RAX)
 
-- `call _printRAXDigit`
-  - Calling the function `_printRAXDigit` which prints the digit present in RAX
+- `call printRAXDigit`
+  - Calling the function `printRAXDigit` which prints the digit present in RAX
   
 - `jmp _exit`
   - Jump to `_exit` label
 
-- `_printRAXDigit`
+- `printRAXDigit`
   - `ADD rax, 48` Increment the value in RAX by 48 (which is ascii value for 0)
     - After incrementing the value in RAX by 48, the resulting value in RAX would be the ASCII value of the digit initially present in RAX
   - `mov [digit], al` Overwriting initial value at effective address of digit (i.e. 0) by first 8 bits (al) of RAX
@@ -62,4 +62,4 @@ In this section we are writing code to print whatever single digit RAX register 
   - `syscall` Invoking the syscall
   - `ret` Popping stack back into RIP
 
-  - `_exit` label to exit the program
+  - `exit` label to exit the program
