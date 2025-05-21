@@ -59,7 +59,7 @@ section .text
     global _start
 _start:
     ;   suppose we had a few statements before this. Let RIP currently have value x
-    ;   let function "func" have address = y
+    ;   let function "func" has address = y
     call func   ; address of this instruction = x, RIP = x + 1
                 ; since we encountered call, the address of func(y) will be stored in RIP
                 ; initial value of RIP i.e x + 1 would be pushed onto the stack
