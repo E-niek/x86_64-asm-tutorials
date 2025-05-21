@@ -16,13 +16,13 @@ In this tutorial, we will learn how to:
         global  _start          ; making the _start label global
 
     _start:                     ; start of the global label
-        call    putPrompt      ; calling function _putPrompt
-        call    readName       ; calling function _readName
-        call    putGreeting    ; calling function _putGreet
-        call    putName        ; caling function _putName
-        jmp     exit           ; jumping to label _exit
+        call    putPrompt      ; calling function putPrompt
+        call    readName       ; calling function readName
+        call    putGreeting    ; calling function putGreet
+        call    putName        ; caling function putName
+        jmp     exit           ; jumping to label exit
 
-    putPrompt:                 ; start of _putPrompt function
+    putPrompt:                 ; start of putPrompt function
         mov     rax, 1          ; load syscall number for sys_write (1) into rax
         mov     rdi, 1          ; load file descriptor for stdout (1) into rdi
         mov     rsi, prompt     ; load pointer to source buffer to write from, into rsi
@@ -30,7 +30,7 @@ In this tutorial, we will learn how to:
         syscall                 ; invoking the syscall
         ret                     ; popping stack back into RIP
 
-    readName:                  ; start of _readName function
+    readName:                  ; start of readName function
         mov     rax, 0          ; load syscall number for sys_read (0) into rax
         mov     rdi, 0          ; load file descriptor for stdin (0) into rdi
         mov     rsi, name       ; load pointer to memory buffer where the input will be stored, into rsi
@@ -38,7 +38,7 @@ In this tutorial, we will learn how to:
         syscall                 ; invoking the syscall
         ret                     ; popping stack back into RIP
 
-    putGreeting:               ; start of _putGreet function
+    putGreeting:               ; start of putGreet function
         mov     rax, 1          ; load syscall number for sys_write (1) into rax
         mov     rdi, 1          ; load file descriptor for stdout (1) into rdi
         mov     rsi, greeting   ; load pointer to source buffer to write from, into rsi
@@ -46,7 +46,7 @@ In this tutorial, we will learn how to:
         syscall                 ; invoking the syscall
         ret                     ; popping stack back into RIP
 
-    putName:                   ; start of _putName function
+    putName:                   ; start of putName function
         mov     rax, 1          ; load syscall number for sys_write (1) into rax
         mov     rdi, 1          ; load file descriptor for stdout (1) into rdi
         mov     rsi, name       ; load pointer to source buffer to write from, into rsi
@@ -54,7 +54,7 @@ In this tutorial, we will learn how to:
         syscall                 ; invoking the syscall
         ret                     ; popping stack back into RIP
 
-    exit:                      ; start of _exit label
+    exit:                      ; start of exit label
         mov     rax, 60         ; load syscall number for sys_ext (60) into rax
         xor     rdi, rdi        ; load 0 into rdi
         syscall                 ; invoking the syscall
@@ -64,36 +64,36 @@ In this tutorial, we will learn how to:
 ### Overview of the code
 In the above code, we have:
 - Four functions (`ret` is present in a function body):
-  - `_putPrompt`
-  - `_readName`
-  - `_putGreeting`
-  - `_putName`
+  - `putPrompt`
+  - `readName`
+  - `putGreeting`
+  - `putName`
 - One global label:
   - `_start`
 - One local label:
-  - `_exit`
+  - `exit`
 
 1. `section .data` - Defining data section
-      - Defining two labels (prompt and greting) for two strings
+      - Defining two labels (prompt and greeting) for two strings.
 
 2. `section .bss` - Defining bss section
    - Reserving 32 bytes for reading input from user and storing it there.
 
 3. `section .text` - Defining text section
-   - calling `_putPrompt`, `_readName`, `_putGreeting`, `_putName` and jumping to `_exit`
+   - calling `putPrompt`, `readName`, `putGreeting`, `putName` and jumping to `exit`
 
 4. Going over functions and labels defined in the program:
-   - `_putPrompt` - Function to print the string `prompt`
+   - `putPrompt` - Function to print the string `prompt`
    
    - `readName` - Function to read input from the user
-     - `mov rax, 0` - Loads value 0 (syscall number for sys_read) into rax
-     - `mov rdi, 0` - Loads value 0 (file descriptor for stdin) into rdi
+     - `mov rax, 0` - Loads value 0 (syscall number for sys_read) into rax.
+     - `mov rdi, 0` - Loads value 0 (file descriptor for stdin) into rdi.
      - `mov rsi, name` - Loads the base memory address which would store the data given by user.
      - `mov rdx, 32` - Loads maximum number of bytes to read into rdx.
-     - `syscall` - Invoking the syscall
+     - `syscall` - Invoking the syscall.
    
-   - `_putGreeting` - Function to print the string `greeting`
+   - `putGreeting` - Function to print the string `greeting`.
    
-   - `_putName` - Function to print the name given by user, we load the pointer to buffer into rsi
+   - `putName` - Function to print the name given by user, we load the pointer to buffer into rsi.
    
-   - `_exit` - Label to exit the program
+   - `exit` - Label to exit the program.
