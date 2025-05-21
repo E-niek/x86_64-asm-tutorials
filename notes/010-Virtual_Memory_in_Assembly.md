@@ -41,8 +41,8 @@ The **stack** is a section of memory used for temporary storage during function 
 
 ### 3.2 Stack Operations:
 - Pushing onto the stack:
-  - Data is placed on the top of the stack using `push` instrucion.
-  - The stack pionter `RSP` is decremented and the data is stored at the new top of the stack.
+  - Data is placed on the top of the stack using `push` instruction.
+  - The stack pointer `RSP` is decremented and the data is stored at the new top of the stack.
   - Example:
     ```asm
         push rax        ; push the value stored in rax onto the stack.
@@ -57,7 +57,7 @@ The **stack** is a section of memory used for temporary storage during function 
 - When we call a function via `call` in asm:
   - Value of `RSP` is decremented (to allocate space on stack), and at the same time, the value of `RIP` is pushed onto the stack.
   - `RIP` is updated such that it points to the first instruction of the called function.
-  - The instructions are exeuted and with each execution, the value of `RIP` is updated to point to next instrucion.
+  - The instructions are executed and with each execution, the value of `RIP` is updated to point to next instruction.
   - `ret` is encountered at some point.
   - once `ret` is encountered:
     - `RIP` is incremented and at the same time, the stack is popped back into `RIP`
