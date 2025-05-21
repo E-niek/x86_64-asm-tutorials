@@ -36,7 +36,7 @@ Throughout your journey with x86_64 assembly, you would need to refer to [Linux 
 
         ; to exit the program
         mov rax, 60     ; syscall number for sys_exit (60)
-        xor rdi, rdi    ; exit code 0. could have wrote "mov rdi, 0"
+        xor rdi, rdi    ; exit code 0. could have written "mov rdi, 0"
         syscall         ; invoking the syscall
 
         ; clearly we don't have any bss section
@@ -58,10 +58,10 @@ Throughout your journey with x86_64 assembly, you would need to refer to [Linux 
    - `_start` - Is conventionally used as the starting point for an assembly program, though you could use any other label.
 
 5. `_start:` - Definition of the `_start:` label.
-   - A `label` defines a location in the code and are used to name specific points in the code.
-   - The label itself **doesnt' execute anything** but the code following the label does.
+   - A `label` defines a location in the code and is used to name specific points in the code.
+   - The label itself **doesn't execute anything** but the code following the label does.
    - Labels helps to jump to a block of code after certain conditions or just reference that block of code.
-   - Any code palced **directly after the label, with indentation**, is associated with that label.
+   - Any code placed **directly after the label, with indentation**, is associated with that label.
    - Code that is not **indented** or that **has another label**, marks the beginning of a new block of code.
 
 6. `mov rax, 1` - Moves value 1 (system call number for `sys_write`) into rax register.
@@ -78,7 +78,7 @@ Throughout your journey with x86_64 assembly, you would need to refer to [Linux 
 
 10. `syscall` - This invokes the system call, with arguments given by us to certain register(s).
 
-11. `mov rax, 60` - Moves value 1 (system call number for `sys_exit`) into rax register.
+11. `mov rax, 60` - Moves value 60 (system call number for `sys_exit`) into rax register.
 
 12. `xor rdi, rdi` - Moves value (xor of value in rdi with that same value i.e. 0 `exit code`) into rdi register.
     - alternative is: `mov rdi, 0`
@@ -174,8 +174,8 @@ Before we start working with labels, we need to go over `jmp` instruction in asm
         global _start
 
     _start:
-        jmp printHelloWorld    ; jumping to _printHelloWorld label
-        jmp _exit               ; jumping to _exit label
+        jmp printHelloWorld    ; jumping to printHelloWorld label
+        jmp exit               ; jumping to exit label
 
     printHelloWorld:
         mov rax, 1
@@ -184,7 +184,7 @@ Before we start working with labels, we need to go over `jmp` instruction in asm
         mov rdx, 13
         syscall
 
-    exit:                      ; defining _exit label
+    exit:                      ; defining exit label
         mov rax, 60
         xor rdi, rdi
         syscall
