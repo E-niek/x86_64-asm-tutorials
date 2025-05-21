@@ -57,7 +57,7 @@ Example of a simple macro:
 ## Local Labels in Macros
 As we have learned, macros are expanded upon assembly of the source code, into pre-defined code. If that code contains a label, this can potentially cause duplicate label error if the macro is used more than once.
 
-This problem can be solved by using `%%` before label names within a macro. This will make it so that the label is unique every time it es expanded.
+This problem can be solved by using `%%` before label names within a macro. This will make it so that the label is unique every time it is expanded.
 
 ## Defining Values With `EQU`
 `EQU` is used to define constants for future use.
@@ -75,4 +75,4 @@ This problem can be solved by using `%%` before label names within a macro. This
 ## Including External Files
 A single assembly program can be broken up into multiple files and then those files can be included into a program using `include`. It will load an external files's code and insert it into the position in which it is included upon the assembly.
 Macros and EQU (constants) are often defined inside of included files.
-`%include "filename.asm"` is how you include an external asm file
+`%include "filename.asm"` is how you include an external asm file.
