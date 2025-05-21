@@ -14,7 +14,7 @@ section .text
     global _start
 
 _start:
-    mov rax, 1232                       ; loading 1232 into rax
+    mov rax, 123                        ; loading 123 into rax
     call printRAX                       ; calling function printRAX
 
     mov rax, 60                         ; loading 60 into rax
@@ -31,7 +31,7 @@ printRAX:
         add rdx, 48                     ; increment the value in rdx by 48
         mov [r15], dl                   ; moving lower byte of rdx into address pointed by r15
         inc r15                         ; increment the value in r15 by 1
-        test rax, rax                   ; perform a bitwise operation between rax and rax, set zf iff rax = 0
+        test rax, rax                   ; perform a bitwise operation between rax and rax, set zf if rax = 0
         jz .printDigits                 ; if zf flag is set, jump to .printDigits
         jmp .loopExtractDigits          ; else jump back to .loopExtractDigits to create a loop
 
@@ -140,7 +140,7 @@ printRAX:
     - Since r15 is a pointer to the value that is to be printed.
     - We can say that we are loading the pointer of the value that is to be printed in rsi via r15.
 
-17. `mov rdx, 1` Loadin 1 (number of bytes to write to stdout starting from poitner loaded in rsi)
+17. `mov rdx, 1` Loading 1 (number of bytes to write to stdout starting from pointer loaded in rsi) into rdx.
 
 18. `syscall` Invoking the syscall
 
@@ -148,11 +148,11 @@ printRAX:
 
 20. `jge .printDigits` As long as the value in r15 is greater than or equal to intBuffer, jump back to .printDigits to create a loop
     - We are decrementing the value in r15 with each iteration so that it can point to a new value after each iteration.
-    - Since we are doing that, we must first print and then stop when r15 points to the base addr of reserved memory (where we stored our first val)
+    - Since we are doing that, we must first print and then stop when r15 points to the base addr of reserved memory (where we stored our first value)
 
 21. `jmp .done` Once value in r15 < base address of reserved memory, jump to `.done` label.
     - When that happens, it means we have printed all the value we stored in the reserved memory.
 
-22. `.done:` Defines a label to which we jump after printing all the values we stored in buffer(reserved memory).
+22. `.done:` Defines a label to which we jump after printing all the values we stored in buffer (reserved memory).
     - Prints the new line char using `sys_write` syscall.
-    - Pop the stack back into RIP to continute the execution.
+    - Pop the stack back into RIP to continue the execution.
